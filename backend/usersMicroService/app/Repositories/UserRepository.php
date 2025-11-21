@@ -19,8 +19,8 @@ class UserRepository
         try {
             $body = $request->getBody()->getContents();
             $data = json_decode($body, true);
-            $controller = new UserController();
-            $user = $controller->login($data['user'], $data['pwd']);
+            $usercontroller = new UserController();
+            $user = $usercontroller->login($data['user'], $data['pwd']);
             $response
                 ->withHeader('Content-Type', 'application/json')
                 ->getBody()

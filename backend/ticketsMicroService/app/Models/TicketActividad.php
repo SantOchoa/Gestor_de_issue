@@ -3,9 +3,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AuthToken extends Model
+class TicketActividad extends Model
 {
-    protected $table = "auth_tokens";
+    protected $table = "ticket_actividad";
     public $timestamps = false;
 
 }
