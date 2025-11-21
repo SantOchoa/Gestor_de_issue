@@ -5,6 +5,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
+use App\Repositories\UserRepository;
 
 
 
@@ -13,5 +14,6 @@ return function(App $app){
         $response->getBody()->write("Hello world!");
         return $response;
     });
+    $app->post('/login', [UserRepository::class, 'login']);
 };
 
