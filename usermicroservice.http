@@ -3,3 +3,9 @@ GET http://127.0.0.1:8000
 
 ###Endpoint: Login
 POST http://127.0.0.1:8000/login
+Content-Type: application/json
+
+{
+    "email": "gestor1@example.com",
+    "pwd": "password123"
+}

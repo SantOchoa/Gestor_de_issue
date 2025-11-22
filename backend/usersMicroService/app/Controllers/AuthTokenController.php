@@ -6,18 +6,25 @@ use Exception;
 
 class AuthTokenController{
 
-    public function login_create($userid, $position){
-        if($position=== 'gestor'){
-            $positiontok = 'token_gestor_1_abc';
-        }else if($position === 'admin'){
-            $positiontok = 'token_admin_1_xyz';
+    public function loginCreateToken($userid, $role){
+        if($role=== 'gestor'){
+            $positiontok = 'token_gestor_';
+        }else if($role === 'admin'){
+            $positiontok = 'token_admin_';
         }
-        //Verificar que se realice bien la creacion de los tokens
-        $row = AuthToken::where('token', 'like', $positiontok . '%')->first();
-        $tokenlast = $row->latest();
-        $tokenlast->split();
-        $token = AuthToken::insert(['user_id' =>$userid, 'token'=> $positiontok. ($tokenlast+1)]);
-        AuthToken::createToken($token);
+        $tokenrole= $positiontok . $userid;
+        $row = AuthToken::where('token', 'like', $tokenrole.'%')->first();
+        if (empty($row)){
+            $codeal= $this->generarCodigo();
+            $tokencod= $tokenrole.'_'.$codeal;
+            $token = AuthToken::insert(['user_id' =>$userid, 'token'=> $tokencod]);
+        }else if(!empty($row)){
+            $row->delete();
+            $codeal= $this->generarCodigo();
+            $tokencod= $tokenrole.'_'.$codeal;
+            $token = AuthToken::insert(['user_id' =>$userid, 'token'=> $tokencod]);
+        }
+        return $tokencod;
     }
     public function getAuthToken(){
         $rows= AuthToken::all();
@@ -26,4 +33,9 @@ class AuthTokenController{
         }
         return $rows->toArray();
     }
+    function generarCodigo($length = 5) {
+        $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        return substr(str_shuffle($chars), 0, $length);
+    }
+
 }
