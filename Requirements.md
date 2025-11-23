@@ -1,10 +1,10 @@
 # Requerimientos 
-- [ ] El sistema deberá dividirse en mínimo 2 microservicios independientes.
-- [ ] Los users pueden iniciar sesion.
+- [x] El sistema deberá dividirse en mínimo 2 microservicios independientes.
+- [x] Los users pueden iniciar sesion.
 - [ ] La aplicación debe tener una pantalla de inicio de sesión.
 ## Auth Tokens
-- [ ] El sistema debe generar un token aleatorio al iniciar sesión (Uno para Admi y otro para gestor).
-- [ ] El token generado debe almacenarse en la base de datos del usuario. (En auth_tokens)
+- [x] El sistema debe generar un token aleatorio al iniciar sesión (Uno para Admi y otro para gestor).
+- [x] El token generado debe almacenarse en la base de datos del usuario. (En auth_tokens)
 - [ ] El frontend debe almacenar el token del usuario iniciado en sessionStorage.
 - [ ] El sistema debe permitir cerrar sesión, eliminando el token almacenado. (Eliminar en sessionStorage y BataBase)
 - [ ] Para consumir cualquier endpoint (excepto inicio) el frontend debe enviar el token.

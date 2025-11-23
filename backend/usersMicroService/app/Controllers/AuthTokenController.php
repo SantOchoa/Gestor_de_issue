@@ -17,12 +17,20 @@ class AuthTokenController{
         if (empty($row)){
             $codeal= $this->generarCodigo();
             $tokencod= $tokenrole.'_'.$codeal;
-            $token = AuthToken::insert(['user_id' =>$userid, 'token'=> $tokencod]);
+            //$token = AuthToken::insert(['user_id' =>$userid, 'token'=> $tokencod]);
+            //$token = AuthToken::save(['user_id' =>$userid, 'token'=> $tokencod]);
+            $m = new AuthToken();
+            $m->user_id = $userid;
+            $m->token= $tokencod;
+            $m->save();
         }else if(!empty($row)){
             $row->delete();
             $codeal= $this->generarCodigo();
             $tokencod= $tokenrole.'_'.$codeal;
-            $token = AuthToken::insert(['user_id' =>$userid, 'token'=> $tokencod]);
+            $m = new AuthToken();
+            $m->user_id = $userid;
+            $m->token= $tokencod;
+            $m->save();
         }
         return $tokencod;
     }
