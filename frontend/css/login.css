@@ -1,31 +1,190 @@
 :root{
-    --glass-bg: rgba(255,255,255,0.12);
-    --glass-border: rgba(255, 255, 255, 0.096);
-    --accent: rgba(255,255,255,0.25);
+    --glass-bg: rgba(255, 255, 255, 0.034);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --accent: rgba(255,255,255,0.22);
 }
 body{
-    width: 100vh;
+    width: 100vw;
+    min-height: 100vh;
     margin:0;
     display:flex;
     align-items:center;
     justify-content:center;
-    background:
-      radial-gradient(circle at 10% 20%, #0f172a 0%, transparent 25%),
-      radial-gradient(circle at 90% 80%, #082032 0%, transparent 30%),
-      linear-gradient(135deg,#0b1220,#071024 60%);
+    -webkit-font-smoothing:antialiased;
+}
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* lo ajusta para llenar el área sin deformarse */
+  z-index: -1; /* lo manda al fondo */
+}
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* ajusta el 0.4 a tu gusto */
+  z-index: -1;
 }
 .login-contanier{
     position:relative;
-    width:360px;
-    height:220px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    width: 500px; /* aumentado para más longitud horizontal */
+    max-width:96vw;
+    height:auto;
     border-radius:20px;
-    padding:20px;
+    padding-top:20px;
+    padding-bottom:20px;
+    padding-left: 20px;
+    padding-right: 20px;
     box-sizing:border-box;
-    /* glass base */
-    background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(10px) saturate(120%);
-    -webkit-backdrop-filter: blur(10px) saturate(120%);
-    box-shadow: 0 8px 30px rgba(2,8,20,0.6), inset 0 1px 0 rgba(255,255,255,0.04);
-    overflow:hidden;
+    /* Fondo más transparente para efecto "liquid glass" */
+    background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+    border: 1px solid rgba(255,255,255,0.14);
+    backdrop-filter: blur(10px) saturate(150%);
+    -webkit-backdrop-filter: blur(10px) saturate(150%);
+    box-shadow: 0 8px 30px rgba(2,8,20,0.45), inset 0 1px 0 rgba(255,255,255,0.04);
+    overflow: visible; /* quitar scroll interno */
+    z-index: 1;
+}
+
+/* Contenedores que ayudan a centrar el login en la pantalla */
+.login-size{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+}
+.contanier{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+}
+
+.muted-text{
+    margin:0;
+    color: rgba(255,255,255,0.8);
+    font-size:0.95rem;
+    text-align:center;
+}
+
+/* Halo borroso exterior que "deforma"/difumina la imagen detrás en los bordes */
+.login-contanier::before{
+    content: "";
+    position: absolute;
+    inset: -18px; /* sale fuera del contenedor para crear un halo más amplio */
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: -1;
+    background: radial-gradient(circle at 30% 10%, rgba(255,255,255,0.06), rgba(255,255,255,0.00) 40%), linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+    filter: blur(18px);
+    opacity: 0.7;
+    mix-blend-mode: screen;
+    /* aplica más blur/deformación al área del pseudo-element */
+    backdrop-filter: blur(14px) saturate(170%);
+    -webkit-backdrop-filter: blur(14px) saturate(170%);
+}
+
+/* Borde interior sutil brillante para realzar el efecto glass */
+.login-contanier::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.00));
+    mask: linear-gradient(#000 0 0);
+    mix-blend-mode: overlay;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.164);
+    opacity: 0.6;
+}
+.login-icon-title{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    margin-inline:50px ;
+
+}
+.icon img{
+    width: 250px;
+}
+
+.input{
+    margin-bottom: 10px;
+    width: 100%;
+}
+input{
+    width: 100%;
+    /* ocupar todo el ancho disponible dentro del form (coincide con el contenedor) */
+    padding: 10px 14px;
+    background-color: #0f0f0f;
+    border: 1px solid #202020;
+    border-radius: 12px;
+    color: #e5e5e5;
+    font-size: 14px;
+    box-sizing: border-box;
+    display: block;
+}
+/* make labels occupy same width as controls */
+form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+form label{
+    width: 100%;
+    display: block;
+    margin-bottom: 6px;
+    color: rgba(255,255,255,0.9);
+}
+input::placeholder {
+  font-size: 12px;
+}
+button{
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
+}
+button svg{
+    fill: #000000da;
+}
+button:hover svg{
+    margin-left: 2px;
+}
+form{
+    align-items: center;
+    justify-content: center;
+}
+h1{
+    width: 200px;
+    font-size: 50px;
+    margin-right: 200px ;
+    font-weight: 400;
 }
