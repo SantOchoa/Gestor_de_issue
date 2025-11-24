@@ -32,5 +32,17 @@ class TicketsRepository{
             return $response->withStatus($status);
         }
     }
+    public function queryallticket(Request $request,Response $response){
+        try{
+            $controller = new TicketController();
+            $rows = $controller->queryallticket();
+            $response->getBody()->write($rows);
+            return $response->withHeader('Content-Type', 'application/json');
+
+        }catch(Exception $ex){
+            $status =  $this->codesError[$ex->getCode()] ?? $this->codesError['default'];
+            return $response->withStatus($status);
+        }
+    }
 
 }

@@ -3,6 +3,7 @@ namespace App\Controllers;
 
 use App\Models\Ticket;
 use App\Controllers\AuthTokenController;
+use App\Models\AuthToken;
 use Exception;
 
 class TicketController{
@@ -18,5 +19,9 @@ class TicketController{
             $ticket
         ]);
         
+    }
+    public function queryallticket(){
+        $rows = Ticket::all();
+        return $rows->toJson();
     }
 }

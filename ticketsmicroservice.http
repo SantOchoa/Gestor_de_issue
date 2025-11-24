@@ -3,7 +3,7 @@ GET http://127.0.0.1:8000
 ### Endpoint: hola mundo!!!
 POST  http://127.0.0.1:8000/view/user/createticket
 Content-Type: application/json
-Authorization: token_admin_1_xyz789
+Authorization: token_gestor_1_hMWDs
 
 {
     "title": "Pruebaaa Prrruba",
@@ -12,3 +12,7 @@ Authorization: token_admin_1_xyz789
     "userid": 1,
     "adminid": 3
 }
+
+### Endpoint: hola mundo!!!
+GET  http://127.0.0.1:8000/view/queryallticket
+Authorization: token_gestor_1_hMWDs

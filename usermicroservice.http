@@ -1,8 +1,8 @@
 # Endpoint: hola mundo!!!
-GET http://127.0.0.1:8000
+GET http://127.0.0.1:8001
 
 ###Endpoint: Login
-POST http://127.0.0.1:8000/login
+POST http://127.0.0.1:8001/login
 Content-Type: application/json
 
 {
@@ -10,5 +10,5 @@ Content-Type: application/json
     "pwd": "password123"
 }
 ###Endpoint: Logout
-GET http://127.0.0.1:8000/view/logout
+GET http://127.0.0.1:8001/view/logout
 Authorization: token_admin_1_xyz789
