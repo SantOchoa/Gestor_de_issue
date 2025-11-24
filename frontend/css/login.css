@@ -190,3 +190,23 @@ h1{
     margin-right: 200px ;
     font-weight: 400;
 }
+.info{
+    display: none;
+    align-items: center;
+    background-color: #ce00002f;
+    border-radius: 15px;
+    padding-block: 20px;
+    padding-inline: 10px;
+}
+.info h3{
+    color: #ff6366;
+    margin: 0;
+    font-weight: 200;
+    font-size: 16px;
+}
+.info svg{
+    width: 25px;
+    height: auto;
+    fill: #ff6366;
+    margin-right: 10px;
+}
