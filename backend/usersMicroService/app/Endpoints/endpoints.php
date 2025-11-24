@@ -3,22 +3,22 @@
 use App\Repositories\AuthTokenRepository;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Slim\Factory\AppFactory;
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
 use App\Repositories\UserRepository;
+$token= require __DIR__."/../Middleware/Token.php";
 
 
 
-return function(App $app){
+return function(App $app) use ($token){
     $app->get('/', function (Request $request, Response $response, $args) {
         $response->getBody()->write("Hello world!");
         return $response;
     });
     $app->post('/login', [UserRepository::class, 'login']);
 
-    $app->group('/view', function (RouteCollectorProxy $group) {
-        $group->get('/logout', [AuthTokenRepository::class, 'logout']);
+    $app->group('/view', function (RouteCollectorProxy $group) use ($token) {
+        $group->get('/logout', [AuthTokenRepository::class, 'logout'])->add($token);
     });
 };
 

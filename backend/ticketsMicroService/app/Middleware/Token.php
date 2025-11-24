@@ -12,7 +12,6 @@ return function (Request $request, RequestHandler $handler) {
 
     $tokencontroller = new AuthTokenController();
     $tokenlistc = $tokencontroller->verificateTokenDataBase($token);
-
     if (!$tokenlistc) {
         $response = new Response();
         $response->getBody()->write(json_encode(['msg' => 'error']));

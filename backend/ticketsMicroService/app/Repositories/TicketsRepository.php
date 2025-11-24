@@ -1,35 +1,36 @@
 <?php
 namespace App\Repositories;
 
-use App\Controllers\AuthTokenController;
+use App\Controllers\TicketController;
 use Exception;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-class AuthTokenRepository{
+class TicketsRepository{
     private $codesError = [
         1 => 403,
         'default' => 400
     ];
-    public function logout(Request $request, Response $response){
+    public function createTicket(Request $request, Response $response){
         try{
-            $headers = $request->getHeader('Authorization');
-            $token = $headers[0] ?? null;
-            $authcontroller = new AuthTokenController();
-            $auth= $authcontroller->logout($token);
-             $response
+            $body = $request->getBody()->getContents();
+            $data = json_decode($body, true);
+            $controller = new TicketController();
+            $ticket = $controller->createTiket(
+                $data['title'],
+                $data['description'],
+                $data['status'],
+                $data['userid'],
+                $data['adminid']);
+            $response
                 ->withHeader('Content-Type', 'application/json')
                 ->getBody()
-                ->write($auth);
+                ->write($ticket);
             return $response;
         }catch(Exception $ex){
             $status =  $this->codesError[$ex->getCode()] ?? $this->codesError['default'];
             return $response->withStatus($status);
         }
-
     }
-
-
-
 
 }

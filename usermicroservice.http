@@ -9,3 +9,6 @@ Content-Type: application/json
     "email": "gestor1@example.com",
     "pwd": "password123"
 }
+###Endpoint: Logout
+GET http://127.0.0.1:8000/view/logout
+Authorization: token_admin_1_xyz789

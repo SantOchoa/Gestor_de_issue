@@ -5,7 +5,6 @@ use App\Models\AuthToken;
 use Exception;
 
 class AuthTokenController{
-
     public function loginCreateToken($userid, $role){
         if($role=== 'gestor'){
             $positiontok = 'token_gestor_';
@@ -17,8 +16,6 @@ class AuthTokenController{
         if (empty($row)){
             $codeal= $this->generarCodigo();
             $tokencod= $tokenrole.'_'.$codeal;
-            //$token = AuthToken::insert(['user_id' =>$userid, 'token'=> $tokencod]);
-            //$token = AuthToken::save(['user_id' =>$userid, 'token'=> $tokencod]);
             $m = new AuthToken();
             $m->user_id = $userid;
             $m->token= $tokencod;
@@ -36,22 +33,23 @@ class AuthTokenController{
     }
     public function logout($token){
         if (empty($token)){
-            throw new Exception("No Token", 2);
+            throw new Exception("No Token", 1);
         }
         $row = AuthToken::where('token', 'like', $token);
         $row->delete();
         return 'Sesion Closed';
     }
-    public function getAuthToken(){
-        $rows= AuthToken::all();
-        if(count($rows)==0){
-            return null;
-        }
-        return $rows->toArray();
-    }
     function generarCodigo($length = 5) {
         $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         return substr(str_shuffle($chars), 0, $length);
+    }
+    function verificateTokenDataBase($token){
+        $row = AuthToken::where('token', 'like', $token)->first();
+        if(empty($row)){
+            return false;
+        }else{
+            return true;
+        }
     }
 
 }
