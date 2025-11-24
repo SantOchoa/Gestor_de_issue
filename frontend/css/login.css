@@ -174,9 +174,11 @@ button{
 }
 button svg{
     fill: #000000da;
+    padding-right: 5px;
 }
 button:hover svg{
-    margin-left: 2px;
+    padding-right: 0;
+    padding-left: 5px;
 }
 form{
     align-items: center;
