@@ -1,5 +1,6 @@
 <?php
 
+use App\Repositories\AuthTokenRepository;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
@@ -15,5 +16,9 @@ return function(App $app){
         return $response;
     });
     $app->post('/login', [UserRepository::class, 'login']);
+
+    $app->group('/view', function (RouteCollectorProxy $group) {
+        $group->get('/logout', [AuthTokenRepository::class, 'logout']);
+    });
 };
 

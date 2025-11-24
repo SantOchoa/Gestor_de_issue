@@ -34,6 +34,14 @@ class AuthTokenController{
         }
         return $tokencod;
     }
+    public function logout($token){
+        if (empty($token)){
+            throw new Exception("No Token", 2);
+        }
+        $row = AuthToken::where('token', 'like', $token);
+        $row->delete();
+        return 'Sesion Closed';
+    }
     public function getAuthToken(){
         $rows= AuthToken::all();
         if(count($rows)==0){
