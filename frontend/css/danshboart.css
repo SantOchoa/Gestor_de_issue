@@ -88,3 +88,80 @@ header .info-user-logout .logout p{
 header .info-user-logout .logout:hover svg {
     fill: rgb(255, 255, 255);
 }
+.counter{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 20px;
+}
+.counter .tickets{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    width: 300px;
+    border-radius:20px;
+    padding: 10px 20px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.04));
+    border: 1px solid rgba(255,255,255,0.14);
+    backdrop-filter: blur(10px) saturate(150%);
+    -webkit-backdrop-filter: blur(10px) saturate(150%);
+    box-shadow: 0 8px 30px rgba(2,8,20,0.45), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+.counter .tickets p{
+    color: #616161b6;
+}
+.counter .icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 10px;
+    width: 40px;
+    height: 40px;
+}
+.counter .total{
+    background-color: rgba(0, 81, 255, 0.329);
+}
+.counter .open{
+    background-color: rgba(128, 0, 0, 0.377);
+}
+.counter .progress{
+    background-color: rgba(255, 145, 0, 0.418);
+}
+.counter .solved{
+    background-color: rgba(0, 128, 0, 0.377);
+}
+.title-create{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-inline: 30px;
+    margin-top: 20px;
+}
+.title-create h1{
+    margin: 0;
+    font-size: 50px;
+}
+.title-create button{
+    width: 200px;
+    padding: 12px 15px;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 15px;
+    font-weight: 500;
+    border: none;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    margin-left: 0;
+    margin-right: 0;
+    box-sizing: border-box;
+}
+.title-create button svg{
+    fill: #000000;
+    padding-right: 5px;
+}
