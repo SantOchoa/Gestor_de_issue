@@ -13,6 +13,6 @@ Authorization: token_gestor_1_hMWDs
     "adminid": 3
 }
 
-### Endpoint: hola mundo!!!
+### Endpoint: queryallticket
 GET  http://127.0.0.1:8000/view/queryallticket
-Authorization: token_gestor_1_hMWDs
+Authorization: token_admin_1_xyz789

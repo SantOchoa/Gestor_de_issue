@@ -39,12 +39,43 @@ class UserRepository
             if(empty($users)){
                 return $response->withStatus(204);
             }
-            $response
+            $response->getBody()->write($users);
+            return $response->withHeader('Content-Type', 'application/json');
+        } catch (Exception $ex) {
+            $status =  $this->codesError[$ex->getCode()] ?? $this->codesError['default'];
+            return $response->withStatus($status);
+        }
+    }
+    public function queryAllAdmin(Request $request, Response $response){
+        try {
+            $controller = new UserController();
+            $users = $controller->getAdmins();
+            if(empty($users)){
+                return $response->withStatus(204);
+            }
+            $response->getBody()->write($users);
+            return $response->withHeader('Content-Type', 'application/json');
+        } catch (Exception $ex) {
+            $status =  $this->codesError[$ex->getCode()] ?? $this->codesError['default'];
+            return $response->withStatus($status);
+        }
+    }
+    public function createuser(Request $request, Response $response){
+        try{
+            $body = $request->getBody()->getContents();
+            $data = json_decode($body, true);
+            $usercontroller = new UserController();
+            $user = $usercontroller->createuser(
+                $data['name'],
+                $data['email'],
+                $data['password'],
+                $data['role']);
+             $response
                 ->withHeader('Content-Type', 'application/json')
                 ->getBody()
-                ->write($users);
+                ->write($user);
             return $response;
-        } catch (Exception $ex) {
+        }catch (Exception $ex) {
             $status =  $this->codesError[$ex->getCode()] ?? $this->codesError['default'];
             return $response->withStatus($status);
         }

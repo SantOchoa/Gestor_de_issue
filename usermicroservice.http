@@ -12,3 +12,24 @@ Content-Type: application/json
 ###Endpoint: Logout
 GET http://127.0.0.1:8001/view/logout
 Authorization: token_admin_1_xyz789
+
+###Endpoint: queryallusers
+GET http://127.0.0.1:8001/view/admin/queryAllUsers
+Authorization: token_gestor_1_dWmFp
+
+###Endpoint: queryAllAdmin
+GET http://127.0.0.1:8001/view/admin/queryAllAdmin
+Authorization: token_gestor_1_dWmFp
+
+###Endpoint: createuser
+POST http://127.0.0.1:8001/view/admin/createuser
+Content-Type: application/json
+Authorization: token_gestor_1_dWmFp
+
+{
+    "name": "santishi8",
+    "email": "santishsi@example.com",
+    "password": "3456fg7",
+    "role": "gestor"
+}
+

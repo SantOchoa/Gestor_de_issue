@@ -27,11 +27,29 @@ class UserController
     }
 
     public function getUsers(){
-        $rows = User::all();
-        if(count($rows)==0){
-            return null;
+        $rows = User::where('role','gestor')->get();
+        if(empty($rows)){
+           throw new Exception("User null", 1);
         }
         return $rows->toJson();
+    }
+    public function getAdmins(){
+        $rows = User::where('role','admin')->get();
+        if(empty($rows)){
+           throw new Exception("User null", 1);
+        }
+        return $rows->toJson();
+    }
+    public function createuser($name,$email,$password,$role){
+        $user= new User();
+        $user->name=$name;
+        $user->email = $email;
+        $user->password = $password;
+        $user->role = $role;
+        $user->save();
+        return json_encode([
+            $user
+        ]);
     }
 
 }

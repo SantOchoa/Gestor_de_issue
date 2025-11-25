@@ -19,6 +19,11 @@ return function(App $app) use ($token){
 
     $app->group('/view', function (RouteCollectorProxy $group) use ($token) {
         $group->get('/logout', [AuthTokenRepository::class, 'logout'])->add($token);
+        $group->group('/admin', function (RouteCollectorProxy $group) use ($token){
+            $group->get('/queryAllUsers',[UserRepository::class,'queryAllUsers'])->add($token);
+            $group->get('/queryAllAdmin',[UserRepository::class,'queryAllAdmin'])->add($token);
+            $group->post('/createuser',[UserRepository::class,'createuser'])->add($token);
+        });
     });
 };
 
