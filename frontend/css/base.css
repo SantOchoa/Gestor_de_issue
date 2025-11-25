@@ -2,3 +2,27 @@
     font-family: "Oxanium", sans-serif;
     color: rgb(255, 255, 255);
 }
+body{
+    width: 100vw;
+    min-height: 100vh;
+    margin:0;
+    display:flex;
+}
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* lo ajusta para llenar el área sin deformarse */
+  z-index: -1; /* lo manda al fondo */
+}
+#overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* ajusta el 0.4 a tu gusto */
+  z-index: -1;
+}

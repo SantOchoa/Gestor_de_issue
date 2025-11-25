@@ -1,35 +1,3 @@
-:root{
-    --glass-bg: rgba(255, 255, 255, 0.034);
-    --glass-border: rgba(255, 255, 255, 0.12);
-    --accent: rgba(255,255,255,0.22);
-}
-body{
-    width: 100vw;
-    min-height: 100vh;
-    margin:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    -webkit-font-smoothing:antialiased;
-}
-#bg-video {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* lo ajusta para llenar el área sin deformarse */
-  z-index: -1; /* lo manda al fondo */
-}
-#overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4); /* ajusta el 0.4 a tu gusto */
-  z-index: -1;
-}
 .login-contanier{
     position:relative;
     display:flex;
