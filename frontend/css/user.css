@@ -1,0 +1,11 @@
+header .info-user-logout .info svg{
+    fill: #06aecb;
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+header .info-user-logout .info-user .userrole{
+    color:#06aecb;
+    font-size: 15px;
+    font-weight: 600;
+}
