@@ -192,3 +192,196 @@ header .info-user-logout .info-user .userrole{
     margin: 0 16px;
 }
 /* ...existing code... */
+/* Variables (Mismas que antes) */
+:root {
+    --dark-bg: #1e1e1e;
+    --modal-bg: #2a2a2a;
+    --text-color: #ffffff;
+    --placeholder-color: #888888;
+    --input-bg: #3a3a3a;
+    --border-color: #444444;
+    --item-hover-bg: #3a3a3a; 
+
+    --admin-color: #9c27b0; 
+    --gestor-color: #00bcd4;
+}
+
+/* --- Estilos Generales del Modal (Clase .usermodal-overlay-show y .modal-content sin cambios) --- */
+.usermodal-overlay-show {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+}
+
+.modal-content {
+    background-color: var(--modal-bg);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 700px; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    max-height: 80vh;
+}
+
+.modal-header {
+    padding: 20px 25px 15px;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+}
+/* ... otros estilos de encabezado y botón de cerrar ... */
+
+
+/* --- Estilos Específicos para la Tabla --- */
+
+.table-container {
+    flex-grow: 1;
+    overflow-y: auto; /* Permite desplazamiento si la lista es larga */
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse; /* Elimina los bordes dobles */
+    background-color: var(--modal-bg);
+    table-layout: fixed; /* Asegura que el ancho de columna se respete */
+}
+
+/* Estilos de encabezado (Oculto para mantener el look de la imagen, pero necesario) */
+.user-table thead {
+    display: none; /* Oculta el encabezado para el look de "lista" */
+}
+.user-table th {
+    /* Si decides mostrarlos, usa: */
+    /* padding: 10px 25px;
+    text-align: left;
+    background-color: var(--input-bg);
+    border-bottom: 1px solid var(--border-color); */
+}
+
+/* Filas de la tabla (simulan los user-item) */
+.user-table tbody tr {
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s ease-in-out;
+}
+
+.user-table tbody tr:hover {
+    background-color: var(--item-hover-bg);
+}
+
+/* Celdas de la tabla */
+.user-table td {
+    padding: 15px 10px;
+    vertical-align: middle;
+}
+
+/* Definición de anchos de columna */
+.user-table .user-info-col { width: 50%; }
+.user-table .user-role-col { width: 30%; }
+.user-table .user-actions-col { width: 20%; text-align: right; }
+
+/* Estilos de la celda de información (combinando el icono y el texto) */
+.user-info-cell {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-left: 25px; /* Reemplaza el padding del tr/td para esta celda */
+}
+
+.user-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.user-email {
+    font-size: 0.9rem;
+    color: var(--placeholder-color);
+}
+
+
+/* Estilos de Iconos (Sin cambios) */
+.user-icon {
+    font-size: 1.8rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+.admin-icon { background-color: var(--admin-color); }
+.gestor-icon { background-color: var(--gestor-color); }
+
+/* Estilos de Acciones (Botón y Select) */
+.user-role-cell {
+    text-align: left;
+}
+.user-actions-cell {
+    text-align: right;
+    padding-right: 25px;
+}
+
+.role-selector {
+    padding: 8px 30px 8px 10px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 4px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    /* (Mismo SVG de flecha que antes) */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="%23FFFFFF"><polygon points="0,0 10,0 5,10"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+}
+
+.delete-user-btn {
+    background: none;
+    border: none;
+    color: var(--placeholder-color);
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.delete-user-btn:hover {
+    color: #ff4500;
+}
+
+/* Overlay para la gestión de usuarios: oculto por defecto, mostrar solo cuando tenga la clase .show */
+.usermodal-overlay-show {
+    position: fixed;
+    inset: 0;
+    display: none; /* oculto por defecto */
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.65);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 160ms ease;
+}
+
+.usermodal-overlay-show.show {
+    display: flex;
+    opacity: 1;
+}
+
+/* Ajustes del modal interior */
+.usermodal-overlay-show .modal-content {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 16px;
+}

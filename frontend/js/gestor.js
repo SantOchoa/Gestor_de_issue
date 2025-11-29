@@ -283,3 +283,42 @@ const queryAllUser = async () => {
         });
     }
 
+    // Botón de "Manage Users" y overlay específico
+    const openModalBtnUsers = document.getElementById('open-modal-btnusers');
+    const userModalOverlay = document.querySelector('.usermodal-overlay-show');
+    const userModalContent = userModalOverlay ? userModalOverlay.querySelector('.modal-content') : null;
+    const userModalCloseBtn = userModalOverlay ? userModalOverlay.querySelector('.close-button') : null;
+
+    // Asegurar ocultar por defecto
+    if (userModalOverlay) userModalOverlay.classList.remove('show');
+
+    const openUserModal = (e) => {
+        e?.preventDefault();
+        if (!userModalOverlay) return;
+        userModalOverlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    };
+
+    const closeUserModal = () => {
+        if (!userModalOverlay) return;
+        userModalOverlay.classList.remove('show');
+        document.body.style.overflow = '';
+    };
+
+    if (openModalBtnUsers) openModalBtnUsers.addEventListener('click', openUserModal);
+    if (userModalCloseBtn) userModalCloseBtn.addEventListener('click', closeUserModal);
+
+    // Click fuera del contenido -> cerrar
+    if (userModalOverlay) {
+        userModalOverlay.addEventListener('click', (e) => {
+            if (e.target === userModalOverlay) closeUserModal();
+        });
+    }
+
+    // Cerrar con tecla Escape si está abierto
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && userModalOverlay && userModalOverlay.classList.contains('show')) {
+            closeUserModal();
+        }
+    });
+
