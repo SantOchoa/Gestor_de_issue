@@ -1,20 +1,20 @@
 # Requerimientos 
-- [ ] El sistema deberá dividirse en mínimo 2 microservicios independientes.
-- [ ] Los users pueden iniciar sesion.
+- [x] El sistema deberá dividirse en mínimo 2 microservicios independientes.
+- [x] Los users pueden iniciar sesion.
 - [ ] La aplicación debe tener una pantalla de inicio de sesión.
 ## Auth Tokens
-- [ ] El sistema debe generar un token aleatorio al iniciar sesión (Uno para Admi y otro para gestor).
-- [ ] El token generado debe almacenarse en la base de datos del usuario. (En auth_tokens)
+- [x] El sistema debe generar un token aleatorio al iniciar sesión (Uno para Admi y otro para gestor).
+- [x] El token generado debe almacenarse en la base de datos del usuario. (En auth_tokens)
 - [ ] El frontend debe almacenar el token del usuario iniciado en sessionStorage.
-- [ ] El sistema debe permitir cerrar sesión, eliminando el token almacenado. (Eliminar en sessionStorage y BataBase)
+- [x] El sistema debe permitir cerrar sesión, eliminando el token almacenado. (Eliminar en sessionStorage y BataBase)
 - [ ] Para consumir cualquier endpoint (excepto inicio) el frontend debe enviar el token.
-- [ ] El backend debe validar que el token exista y sea válido.
-- [ ] Si el token no existe o no es válido, el sistema debe impedir el acceso a los endpoints.
-- [ ] Si el token no es válido desde el frontend, el usuario debe ser enviado a la página de inicio de sesión.
+- [x] El backend debe validar que el token exista y sea válido.
+- [x] Si el token no existe o no es válido, el sistema debe impedir el acceso a los endpoints.
+- [x] Si el token no es válido desde el frontend, el usuario debe ser enviado a la página de inicio de sesión.
 ## Users Type
-- [ ] El sistema debe manejar dos roles Admi y gestor.
+- [x] El sistema debe manejar dos roles Admi y gestor.
 ### Manager
-- [ ] El gestor solo puede crea tickets y realiza seguimiento (Post y Get).
+- [x] El gestor solo puede crea tickets y realiza seguimiento (Post y Get).
 ### Admin
 - [ ] El admid gestiona tickets y gestiona usuarios (Get, Put y Delete).
 - [ ] El administrador debe poder listar usuarios. (Get)
