@@ -98,19 +98,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (modalOverlay) modalOverlay.classList.remove('show');
 
     const closeModal = () => {
-        if (!modalOverlay) return;
+        if (!modalOverlay) return; // <-- CORRECCIÓN importante
         modalOverlay.classList.remove('show');
         document.body.style.overflow = ''; // permitir scroll otra vez
     };
 
-    if (openModalBtn && modalOverlay) {
-        openModalBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            modalOverlay.classList.add('show');
-            document.body.style.overflow = 'hidden'; // prevenir scroll detrás del modal
-        });
-    }
+    const openModal = (e) => {
+        e?.preventDefault();
+        if (!modalOverlay) return;
+        modalOverlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    };
 
+    if (openModalBtn) openModalBtn.addEventListener('click', openModal);
     if (closeButton) closeButton.addEventListener('click', closeModal);
     if (cancelButton) cancelButton.addEventListener('click', closeModal);
 

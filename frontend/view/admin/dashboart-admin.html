@@ -90,10 +90,10 @@
         </div>
     </div>
     <div class="title-create">
-        <h1>Your Tickets</h1>
-        <button>
+        <h1>The Tickets</h1>
+        <button class="create-user-button" id="open-modal-btn">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/></svg>
-            Create Ticket
+            Create user
         </button>
     </div>
     <div class="filter">
@@ -108,9 +108,53 @@
         </select>
 
     </div>
-    <div class="tickets">
+    <div class="tickets" id ="tickets22">
+        
+    </div>
+    <div class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Crear Nuevo Usuario</h2>
+            <p>Ingresa los datos del nuevo colaborador.</p>
+        </div>
+        
+        <form class="user-form" id="user-form">
+            
+            <div class="form-group">
+                <label for="user-name">Nombre Completo <span class="required">*</span></label>
+                <input type="text" id="user-name" name="name" placeholder="Ej: Juan Pérez" required>
+            </div>
 
+            <div class="form-group">
+                <label for="user-email">Correo Electrónico <span class="required">*</span></label>
+                <input type="email" id="user-email" name="email" placeholder="ejemplo@dominio.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="user-password">Contraseña <span class="required">*</span></label>
+                <input type="password" id="user-password" name="password" placeholder="Mínimo 8 caracteres" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="user-role">Rol del Usuario <span class="required">*</span></label>
+                <select id="user-role" name="role" required>
+                    <option value="" disabled selected>Selecciona un rol</option>
+                    <option value="gestor">Gestor</option>
+                    <option value="admin">Administrador</option>
+                </select>
+            </div>
+            
+            <div class="form-actions">
+                <button type="submit" class="create-user-btn">
+                    👤 Crear Usuario
+                </button>
+                <button type="button" class="cancel-btn">
+                    Cancelar
+                </button>
+            </div>
+        </form>
     </div>
-    </div>
+</div>
+    <script src="../../js/gestor.js"></script>
 </body>
 </html>

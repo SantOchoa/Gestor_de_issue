@@ -9,3 +9,186 @@ header .info-user-logout .info-user .userrole{
     font-size: 15px;
     font-weight: 600;
 }
+/* Variables para colores (Recomendado) */
+:root {
+    --dark-bg: #1e1e1e;
+    --modal-bg: #2a2a2a;
+    --text-color: #ffffff;
+    --placeholder-color: #888888;
+    --input-bg: #3a3a3a;
+    --primary-color: #4CAF50; /* Color primario cambiado a verde para un botón de "Crear" */
+    --border-color: #444444;
+}
+
+/* --- Estilos del Modal (Mismos que el anterior) --- */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    font-family: sans-serif;
+    color: var(--text-color);
+}
+
+.modal-content {
+    background-color: var(--modal-bg);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 450px; /* Un poco más angosto para formularios de usuario */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.modal-header {
+    padding: 20px 25px 15px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.modal-header h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0 0 5px 0;
+}
+
+.modal-header p {
+    font-size: 0.9rem;
+    color: var(--placeholder-color);
+    margin: 0;
+}
+
+/* --- Estilos del Formulario --- */
+
+.user-form {
+    padding: 20px 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.required {
+    color: #ff4500;
+    font-weight: bold;
+}
+
+/* Estilos de inputs y select */
+.form-group input,
+.form-group select { /* Aplicar estilos al select también */
+    width: 100%;
+    padding: 10px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    appearance: none; /* Ocultar el estilo nativo de select */
+    -webkit-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="%23FFFFFF"><polygon points="0,0 10,0 5,10"/></svg>'); /* Flecha blanca para select */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 30px; /* Espacio para la flecha */
+}
+
+.form-group option {
+    background-color: var(--input-bg); /* Estilo de las opciones en el menú desplegable */
+    color: var(--text-color);
+}
+
+.form-group input::placeholder {
+    color: var(--placeholder-color);
+    font-style: italic;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* --- Estilos de Acciones (Botones) --- */
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1px solid var(--border-color); 
+    margin-top: 20px;
+    padding-top: 20px;
+    margin-left: -25px;
+    margin-right: -25px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.form-actions button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* Botón principal: "Crear Usuario" */
+.create-user-btn {
+    flex-grow: 1; 
+    background-color: var(--primary-color); /* Verde */
+    color: var(--modal-bg);
+    font-weight: bold;
+    padding: 15px 20px;
+}
+
+.create-user-btn:hover {
+    background-color: #66BB6A;
+}
+
+/* Botón secundario: "Cancelar" */
+.cancel-btn {
+    background: none;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.cancel-btn:hover {
+    color: #FF7043; /* Naranja sutil al pasar el ratón */
+}
+/* ...existing code... */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    display: none; /* oculto por defecto */
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.65);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 160ms ease;
+}
+.modal-overlay.show {
+    display: flex;
+    opacity: 1;
+}
+/* Centrar modal */
+.modal-content {
+    max-width: 720px;
+    width: 90%;
+    margin: 0 16px;
+}
+/* ...existing code... */

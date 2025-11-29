@@ -84,7 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- LÓGICA PARA MOSTRAR TICKETS ASIGNADOS AL USUARIO ---
     
     queryAllUser();
-
     // ---------------------------------------------------
     // Modal: abrir/mostrar solo al dar click en open-modal-btn
     // ---------------------------------------------------
@@ -94,126 +93,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeButton = document.querySelector('.close-button');
     const cancelButton = document.querySelector('.cancel-btn');
 
-    // Asegurar ocultar por defecto
     if (modalOverlay) modalOverlay.classList.remove('show');
 
     const closeModal = () => {
         if (!modalOverlay) return;
         modalOverlay.classList.remove('show');
-        document.body.style.overflow = ''; // permitir scroll otra vez
+        document.body.style.overflow = '';
     };
 
-    if (openModalBtn && modalOverlay) {
-        openModalBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            modalOverlay.classList.add('show');
-            document.body.style.overflow = 'hidden'; // prevenir scroll detrás del modal
-        });
-    }
+    const openModal = (e) => {
+        e?.preventDefault();
+        if (!modalOverlay) return;
+        modalOverlay.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    };
 
+    if (openModalBtn) openModalBtn.addEventListener('click', openModal);
     if (closeButton) closeButton.addEventListener('click', closeModal);
     if (cancelButton) cancelButton.addEventListener('click', closeModal);
 
-    // Cerrar si el usuario hace click fuera del modal content
     if (modalOverlay) {
         modalOverlay.addEventListener('click', (e) => {
             if (e.target === modalOverlay) closeModal();
         });
     }
 
-    // Cerrar con tecla Escape
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('show')) {
             closeModal();
         }
     });
 
-    // ---------------------------------------------------
-    // HANDLE: Crear ticket desde el formulario (POST)
-    // ---------------------------------------------------
-    const ticketForm = document.querySelector('.ticket-form');
 
-    if (ticketForm) {
-        ticketForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const titleEl = document.getElementById('ticket-title');
-            const descEl  = document.getElementById('ticket-description');
-            const submitBtn = ticketForm.querySelector('button[type="submit"]');
-
-            const title = titleEl ? titleEl.value.trim() : '';
-            const description = descEl ? descEl.value.trim() : '';
-
-            if (!title || !description) {
-                alert('Por favor ingresa título y descripción.');
-                return;
-            }
-
-            // Default status (no hay campo en el modal)
-            const status = 'abierto';
-
-            // Intenta obtener user id desde localStorage (si existe) — si no, envía null
-            const storedUserId = localStorage.getItem('userId') || localStorage.getItem('userid') || localStorage.getItem('gestorId') || null;
-            const userid = storedUserId ? Number(storedUserId) : null;
-
-            const token = localStorage.getItem('authToken') || '';
-
-            // Lock UI
-            if (submitBtn) {
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Creando...';
-            }
-
-            try {
-                const response = await fetch('http://127.0.0.1:8000/view/user/createticket', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': token
-                    },
-                    body: JSON.stringify({
-                        title,
-                        description,
-                        status,
-                        userid
-                    })
-                });
-
-                if (response.ok) {
-                    // Si el backend devuelve JSON, lo procesamos
-                    try {
-                        const result = await response.json();
-                        console.log('Ticket creado:', result);
-                    } catch (jsonErr) {
-                        console.log('Ticket creado (sin JSON devuelto).');
-                    }
-
-                    // Cerrar modal, limpiar formulario y recargar tickets
-                    closeModal();
-                    ticketForm.reset();
-                    queryAllUser();
-                } else {
-                    // Manejo básico de errores
-                    if (response.status === 401) {
-                        alert('No autorizado. Verifica tu sesión.');
-                    } else {
-                        const text = await response.text();
-                        console.error('Error al crear ticket:', response.status, text);
-                        alert('Hubo un error al crear el ticket. Revisa la consola.');
-                    }
-                }
-            } catch (error) {
-                console.error('Error de red al crear ticket:', error);
-                alert('Error de conexión. Intenta más tarde.');
-            } finally {
-                // Unlock UI
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = '+ Crear Ticket';
-                }
-            }
-        });
-    }
 
 });
 
@@ -291,4 +202,84 @@ const queryAllUser = async () => {
         console.error('Error en la consulta', error);
     }
 };
+
+    // ---------------------------------------------------
+    // HANDLE: Crear usuario desde el formulario (POST)
+    // ---------------------------------------------------
+    const userForm = document.getElementById('user-form') || document.querySelector('.user-form');
+
+    if (userForm) {
+        userForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const nameEl = document.getElementById('user-name');
+            const emailEl = document.getElementById('user-email');
+            const passwordEl = document.getElementById('user-password');
+            const roleEl = document.getElementById('user-role');
+            const submitBtn = userForm.querySelector('button[type="submit"]') || document.querySelector('.create-user-btn');
+
+            const name = nameEl ? nameEl.value.trim() : '';
+            const email = emailEl ? emailEl.value.trim() : '';
+            const password = passwordEl ? passwordEl.value.trim() : '';
+            const role = roleEl ? roleEl.value : '';
+
+            // Validaciones básicas
+            if (!name || !email || !password || !role) {
+                alert('Por favor completa todos los campos.');
+                return;
+            }
+
+            // Lock UI
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Creando...';
+            }
+
+            try {
+                const token = localStorage.getItem('authToken') || '';
+                const response = await fetch('http://127.0.0.1:8001/view/admin/createuser', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': token
+                    },
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        password,
+                        role
+                    })
+                });
+
+                if (response.ok) {
+                    try {
+                        const result = await response.json();
+                        console.log('Usuario creado:', result);
+                    } catch (_) {
+                        console.log('Usuario creado (sin JSON devuelto).');
+                    }
+
+                    // Cerrar modal, limpiar formulario y opcionalmente refrescar usuarios
+                    if (typeof closeModal === 'function') closeModal();
+                    userForm.reset();
+                    // Si tienes una función para actualizar la lista de usuarios, llamala:
+                    // queryAllUsers(); // (implementar si hace falta)
+                    alert('Usuario creado con éxito.');
+                } else {
+                    const text = await response.text();
+                    console.error('Error al crear usuario:', response.status, text);
+                    alert('Hubo un error al crear el usuario. Revisa la consola.');
+                }
+            } catch (error) {
+                console.error('Error de red al crear usuario:', error);
+                alert('Error de conexión. Intenta más tarde.');
+            } finally {
+                // Unlock UI
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = '👤 Crear Usuario';
+                }
+            }
+        });
+    }
 
