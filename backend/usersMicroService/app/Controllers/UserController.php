@@ -21,8 +21,8 @@ class UserController
         $auth= new AuthTokenController();
         $authtoken= $auth->loginCreateToken($userid,$userrole);
         return json_encode([
-            $row,
-            $authtoken,
+            "user" => $row,
+            "token" => $authtoken
         ]);
     }
 
