@@ -9,12 +9,12 @@
 - [x] El sistema debe permitir cerrar sesión, eliminando el token almacenado. (Eliminar en sessionStorage y BataBase)
 - [ ] Para consumir cualquier endpoint (excepto inicio) el frontend debe enviar el token.
 - [x] El backend debe validar que el token exista y sea válido.
-- [ ] Si el token no existe o no es válido, el sistema debe impedir el acceso a los endpoints.
-- [ ] Si el token no es válido desde el frontend, el usuario debe ser enviado a la página de inicio de sesión.
+- [x] Si el token no existe o no es válido, el sistema debe impedir el acceso a los endpoints.
+- [x] Si el token no es válido desde el frontend, el usuario debe ser enviado a la página de inicio de sesión.
 ## Users Type
-- [ ] El sistema debe manejar dos roles Admi y gestor.
+- [x] El sistema debe manejar dos roles Admi y gestor.
 ### Manager
-- [ ] El gestor solo puede crea tickets y realiza seguimiento (Post y Get).
+- [x] El gestor solo puede crea tickets y realiza seguimiento (Post y Get).
 ### Admin
 - [ ] El admid gestiona tickets y gestiona usuarios (Get, Put y Delete).
 - [ ] El administrador debe poder listar usuarios. (Get)

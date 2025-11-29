@@ -1,5 +1,6 @@
 <?php
 
+use App\Controllers\TicketsActividadController;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Factory\AppFactory;
@@ -19,8 +20,11 @@ return function(App $app) use ($token){
 
     $app->group('/view', function (RouteCollectorProxy $group) use ($token) {
         $group->get('/queryallticket',[TicketsRepository::class,'queryallticket'])->add($token);
+        $group->post ('/createcommitticet',[TicketsActividadController::class,'createcommitticet'])->add($token);
         $group->group('/user', function (RouteCollectorProxy $group) use ($token){
             $group->post('/createticket', [TicketsRepository::class, 'createTicket'])->add($token);
+        });
+        $group->group('/admin', function (RouteCollectorProxy $group) use ($token){
         });
     });
 };

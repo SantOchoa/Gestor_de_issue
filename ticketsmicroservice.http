@@ -16,3 +16,16 @@ Authorization: token_gestor_1_hMWDs
 ### Endpoint: queryallticket
 GET  http://127.0.0.1:8000/view/queryallticket
 Authorization: token_admin_1_xyz789
+
+###Endpoint : creat commitr 
+POST  http://127.0.0.1:8000/view/user/createticket
+Content-Type: application/json
+Authorization: token_gestor_1_hMWDs
+
+{
+    "title": "Pruebaaa Prrruba",
+    "description": "Que salga bien",
+    "status": "abierto",
+    "userid": 1,
+    "adminid": 3
+}
