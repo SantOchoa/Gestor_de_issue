@@ -20,8 +20,7 @@ class TicketsRepository{
                 $data['title'],
                 $data['description'],
                 $data['status'],
-                $data['userid'],
-                $data['adminid']);
+                $data['userid']);
             $response
                 ->withHeader('Content-Type', 'application/json')
                 ->getBody()
@@ -39,6 +38,19 @@ class TicketsRepository{
             $response->getBody()->write($rows);
             return $response->withHeader('Content-Type', 'application/json');
 
+        }catch(Exception $ex){
+            $status =  $this->codesError[$ex->getCode()] ?? $this->codesError['default'];
+            return $response->withStatus($status);
+        }
+    }
+    public function queryallticketbyid(Request $request,Response $response){
+        try{
+            $controller = new TicketController();
+            $body = $request->getBody()->getContents();
+            $data = json_decode($body, true);
+            $rows = $controller->queryticketbyid($data['gestor_id']);
+            $response->getBody()->write($rows);
+            return $response->withHeader('Content-Type', 'application/json');
         }catch(Exception $ex){
             $status =  $this->codesError[$ex->getCode()] ?? $this->codesError['default'];
             return $response->withStatus($status);

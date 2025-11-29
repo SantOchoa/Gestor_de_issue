@@ -20,8 +20,10 @@ return function(App $app) use ($token){
 
     $app->group('/view', function (RouteCollectorProxy $group) use ($token) {
         $group->get('/queryallticket',[TicketsRepository::class,'queryallticket'])->add($token);
+        $group->get('/queryallticketbyid',[TicketsRepository::class,'queryallticketbyid'])->add($token);
         $group->post('/createcommitticet',[TicketsActividadRepository::class,'createcommitticet'])->add($token);
         $group->get('/showcommit', [TicketsActividadRepository::class,'showcommit'])->add($token);
+       
         $group->group('/user', function (RouteCollectorProxy $group) use ($token){
             $group->post('/createticket', [TicketsRepository::class, 'createTicket'])->add($token);
         });

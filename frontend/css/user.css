@@ -9,3 +9,186 @@ header .info-user-logout .info-user .userrole{
     font-size: 10px;
     font-weight: 600;
 }
+/* Variables para colores (Opcional, pero recomendado) */
+:root {
+    --dark-bg: #1e1e1e;
+    --modal-bg: #2a2a2a;
+    --text-color: #ffffff;
+    --placeholder-color: #888888;
+    --input-bg: #3a3a3a;
+    --primary-color: #ffffff; /* Color principal del botón de acción */
+    --border-color: #444444;
+}
+
+/* Estilo para el fondo del modal (Overlay) */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo semi-transparente y oscuro */
+    display: none; /* Oculto por defecto */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    font-family: sans-serif;
+    color: var(--text-color);
+    opacity: 0;
+    transition: opacity 200ms ease-in-out;
+}
+
+.modal-overlay.show {
+    display: flex; /* Se mostrará con display flex cuando tenga la clase show */
+    opacity: 1;
+}
+
+/* Contenido de la ventana modal */
+.modal-content {
+    background-color: var(--modal-bg);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Para contener bien el header y el form */
+    transform: translateY(8px);
+    transition: transform 200ms ease-in-out;
+}
+
+.modal-overlay.show .modal-content {
+    transform: translateY(0);
+}
+
+/* Encabezado del modal */
+.modal-header {
+    padding: 20px 25px 15px;
+    border-bottom: 1px solid var(--border-color); /* Separador sutil */
+    position: relative;
+}
+
+.modal-header h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin: 0 0 5px 0;
+}
+
+.modal-header p {
+    font-size: 0.9rem;
+    color: var(--placeholder-color);
+    margin: 0;
+}
+
+/* Botón de cerrar (invisible en la imagen, pero buena práctica) */
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none; /* Ocultar para imitar el diseño de la imagen si se desea */
+}
+
+/* Formulario */
+.ticket-form {
+    padding: 20px 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+.required {
+    color: #ff4500; /* Color distintivo para el asterisco */
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 4px;
+    box-sizing: border-box; /* Importante para que el padding no desborde el ancho */
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--placeholder-color);
+    font-style: italic;
+}
+
+.form-group textarea {
+    min-height: 150px; /* Altura del campo de descripción */
+    resize: vertical;
+}
+
+/* Sección de botones de acción */
+.form-actions {
+    display: flex;
+    justify-content: flex-end; /* Alinear a la derecha */
+    gap: 10px;
+    padding-top: 10px;
+    /* Estilo para que los botones abarquen todo el ancho y se alineen */
+    border-top: 1px solid var(--border-color); 
+    margin-top: 20px;
+    padding-top: 20px;
+    margin-left: -25px;
+    margin-right: -25px;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.form-actions button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* Botón principal: "Crear Ticket" (Estilo para que sea grande y lleno) */
+.create-ticket-btn { /* Para que ocupe todo el espacio disponible */
+    background-color: var(--primary-color);
+    color: var(--modal-bg); /* Texto oscuro en fondo claro */
+    font-weight: bold;
+    padding: 15px 20px;
+    width: 200px; /* Más padding para hacerlo más grande */
+}
+
+.create-ticket-btn:hover {
+    background-color: #cccccc;
+}
+
+/* Botón secundario: "Cancelar" (Estilo de texto) */
+.cancel-btn {
+    background: none;
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.cancel-btn:hover {
+    color: #ff4500; /* Un pequeño cambio de color al pasar el ratón */
+}

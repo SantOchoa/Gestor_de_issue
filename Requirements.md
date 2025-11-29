@@ -5,9 +5,9 @@
 ## Auth Tokens
 - [x] El sistema debe generar un token aleatorio al iniciar sesión (Uno para Admi y otro para gestor).
 - [x] El token generado debe almacenarse en la base de datos del usuario. (En auth_tokens)
-- [ ] El frontend debe almacenar el token del usuario iniciado en sessionStorage.
+- [x] El frontend debe almacenar el token del usuario iniciado en sessionStorage.
 - [x] El sistema debe permitir cerrar sesión, eliminando el token almacenado. (Eliminar en sessionStorage y BataBase)
-- [ ] Para consumir cualquier endpoint (excepto inicio) el frontend debe enviar el token.
+- [x] Para consumir cualquier endpoint (excepto inicio) el frontend debe enviar el token.
 - [x] El backend debe validar que el token exista y sea válido.
 - [x] Si el token no existe o no es válido, el sistema debe impedir el acceso a los endpoints.
 - [x] Si el token no es válido desde el frontend, el usuario debe ser enviado a la página de inicio de sesión.
@@ -25,8 +25,8 @@
 - [ ] Cada ticket debe guardar historial de comentarios. (Una vista especifica de los comentarios hechos) 
 - [ ] El sistema debe permitir buscar y filtrar tickets por estado, creador o asignación. 
 ### Manager
-- [ ] Solo los usuarios con rol gestor deben poder crear tickets. (No se le va asignar a un admi especifico, cada que un admid modifique el tiket se le asignara) (Post)
-- [ ] Los gestores deben poder ver los tickets que han creado. (Get)
+- [x] Solo los usuarios con rol gestor deben poder crear tickets. (No se le va asignar a un admi especifico, cada que un admid modifique el tiket se le asignara) (Post)
+- [x] Los gestores deben poder ver los tickets que han creado. (Get)
 - [ ] Los gestores deben poder agregar comentarios a sus tickets. (En ticket_actividad) (Post)
 ### Admin
 - [ ] Los administradores deben poder ver todos los tickets. (Get)

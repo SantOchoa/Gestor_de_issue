@@ -221,3 +221,110 @@ header .info-user-logout .logout:hover svg {
 body {
     padding-top: 70px; /* ajustar si el header tiene otra altura */
 }
+.tickets{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+    /* width: 100vh;  <- eliminado porque generaba fallos de layout */
+    width: auto;
+    height: auto;
+}
+
+/* Grid para tarjetas - usa el id que tienes en tu HTML (#tickets22),
+   o cambia a la clase que uses para el contenedor */
+#tickets22 {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(220px, 1fr)); /* 4 columnas con ancho mínimo */
+    gap: 20px; /* espacio entre tarjetas */
+    margin: 20px;
+    width: calc(100% - 40px); /* margen coherente con el contenedor */
+    box-sizing: border-box;
+    align-items: start;
+}
+
+.card {
+    width: 200px;
+    /* AQUÍ ESTÁ LA MAGIA DE LA TRANSPARENCIA */
+    background-color: rgba(20, 20, 20, 0.85); /* Negro al 85% de opacidad */
+    backdrop-filter: blur(8px); /* Efecto borroso detrás de la tarjeta */
+    
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 16px;
+    color: #fff;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Header: Título y Badge */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+    color: #ffffff;
+    padding-right: 10px;
+}
+
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background-color: rgba(234, 179, 8, 0.15); /* Fondo naranja sutil */
+    color: #eab308; /* Color texto naranja */
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Descripción */
+.card-description {
+    font-size: 14px;
+    color: #a1a1aa; /* Gris claro */
+    margin: 0 0 16px 0;
+    line-height: 1.4;
+}
+
+/* Footer: Usuarios y Fecha */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: #71717a; /* Gris más oscuro */
+}
+
+.users-flow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.user-target {
+    color: #a855f7; /* Color morado para admin1 */
+}
+
+.arrow {
+    font-size: 14px;
+    color: #52525b;
+}
+
+.date {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}

@@ -15,12 +15,19 @@ Authorization: token_gestor_1_dWmFp
 
 ### Endpoint: queryallticket
 GET  http://127.0.0.1:8000/view/queryallticket
-Authorization: token_gestor_1_dWmFp
 
+### Endpoint: queryticketbyid
+GET  http://127.0.0.1:8000/view/queryallticketbyid
+Content-Type: application/json
+Authorization: token_admin_3_Aezr6
+
+{
+    "gestor_id": 1
+}
 ###Endpoint : creat commitr 
 POST  http://127.0.0.1:8000/view/createcommitticet
 Content-Type: application/json
-Authorization: token_gestor_1_dWmFp
+Authorization: token_gestor_1_51i4v
 
 {
     "ticket_id": 1,
