@@ -35,8 +35,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
                 const data = await response.json();
                 localStorage.setItem('authToken', data.token);
-                    // Guardar rol si es necesario para redirección
-                 localStorage.setItem('userRole', data.user.role);
+                localStorage.setItem('userId', data.user.id);
+                localStorage.setItem('userName', data.user.name);
+                localStorage.setItem('userRole', data.user.role);
+
                 if (data.user.role === 'admin') {
                     window.location.href = 'admin/dashboart-admin.html';
                     return;
